@@ -1,0 +1,3346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nokhpa TEAM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#9c7618;
+  --gold-soft:rgba(212,175,55,.18);
+
+  --bg:#070707;
+  --bg2:#101010;
+  --card:#111111;
+
+  --text:#f7f2df;
+  --text2:#c9c0a8;
+  --text3:#91876e;
+
+  --border:rgba(212,175,55,.22);
+
+  --success:#20c77a;
+  --danger:#ef4444;
+
+  --radius:18px;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:#d4af37 #050505;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.08),transparent 35%),
+    #070707;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(212,175,55,.035),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(212,175,55,.035),transparent 25%);
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+#prog-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  z-index:9999;
+  background:linear-gradient(
+    90deg,
+    #8f6b16,
+    #d4af37,
+    #fff1a8,
+    #d4af37,
+    #8f6b16
+  );
+  box-shadow:0 0 14px rgba(212,175,55,.8);
+  transition:width .3s ease;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(212,175,55,.35);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.5),
+    0 1px 0 rgba(212,175,55,.08);
+}
+
+.nav-back{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#e9d88d;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:8px 13px;
+
+  border-radius:9px;
+  border:1px solid rgba(212,175,55,.35);
+
+  background:#0d0d0d;
+
+  transition:.3s;
+}
+
+.nav-back:hover{
+  color:#fff;
+  border-color:#d4af37;
+  transform:translateX(3px);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#f5d76e;
+  font-size:15px;
+  font-weight:900;
+}
+
+.nav-logo-icon{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#080808;
+  font-size:11px;
+  font-weight:900;
+
+  border:1px solid rgba(255,225,120,.8);
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,.28),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.theme-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0d0d0d;
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.theme-btn:hover{
+  border-color:#d4af37;
+  transform:rotate(20deg);
+  box-shadow:0 0 18px rgba(212,175,55,.2);
+}
+
+/* HERO */
+
+.hero-band{
+  position:relative;
+  overflow:hidden;
+
+  margin-top:64px;
+
+  padding:44px 24px 38px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      ellipse 650px 260px at 50% 115%,
+      rgba(212,175,55,.22),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #030303 0%,
+      #0b0b0b 42%,
+      #151208 65%,
+      #000 100%
+    );
+
+  border-bottom:1px solid rgba(212,175,55,.55);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(212,175,55,.2);
+}
+
+.hero-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse 700px 220px at 50% 100%,
+      rgba(245,215,110,.15),
+      transparent 70%
+    );
+}
+
+.hero-band::after{
+  content:"";
+  position:absolute;
+
+  left:-10%;
+  right:-10%;
+  bottom:-85px;
+
+  height:150px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(212,175,55,.14),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+.hero-band-icon{
+  position:relative;
+  z-index:1;
+
+  width:70px;
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 15px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#090909;
+
+  border:1px solid rgba(255,230,130,.85);
+
+  font-size:30px;
+
+  box-shadow:
+    0 0 25px rgba(212,175,55,.25),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.hero-band h1{
+  position:relative;
+  z-index:1;
+
+  color:#fff7d0;
+
+  font-size:clamp(22px,4vw,31px);
+  font-weight:900;
+
+  margin-bottom:7px;
+
+  text-shadow:
+    0 2px 15px rgba(212,175,55,.25);
+}
+
+.hero-band p{
+  position:relative;
+  z-index:1;
+
+  color:#cfc39b;
+
+  font-size:13px;
+}
+
+.hero-band-meta{
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 16px;
+
+  border-radius:50px;
+
+  background:rgba(212,175,55,.08);
+
+  border:1px solid rgba(212,175,55,.38);
+
+  color:#f5d76e;
+
+  font-size:12px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 15px rgba(0,0,0,.25);
+}
+
+/* MAIN */
+
+.shell{
+  width:100%;
+  max-width:760px;
+
+  margin:0 auto;
+
+  padding:28px 20px 80px;
+}
+
+/* STATS */
+
+.stats-row{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.stat-box{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(212,175,55,.025)
+    );
+
+  border:1px solid rgba(212,175,55,.22);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+
+.stat-box:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(212,175,55,.5);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45),
+    0 0 20px rgba(212,175,55,.08);
+}
+
+.stat-box .val{
+  font-size:21px;
+  font-weight:900;
+}
+
+.stat-box .lbl{
+  margin-top:2px;
+
+  color:var(--text3);
+
+  font-size:11px;
+}
+
+.stat-correct{
+  color:var(--success);
+}
+
+.stat-wrong{
+  color:var(--danger);
+}
+
+.stat-remain{
+  color:#d4af37;
+}
+
+/* PROGRESS */
+
+.prog-strip{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  margin-bottom:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101010,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.prog-label{
+  color:#d8cfb5;
+
+  font-size:13px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.prog-track{
+  flex:1;
+
+  height:8px;
+
+  background:#050505;
+
+  border:1px solid rgba(212,175,55,.12);
+
+  border-radius:8px;
+
+  overflow:hidden;
+}
+
+.prog-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #d4af37
+    );
+
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+
+  border-radius:8px;
+
+  transition:width .4s;
+}
+
+.timer-badge{
+  min-width:70px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  padding:0 12px;
+
+  flex-shrink:0;
+
+  border-radius:18px;
+
+  background:#0a0a0a;
+
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.45);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.timer-badge.warn{
+  color:#f5d76e;
+  border-color:rgba(212,175,55,.7);
+}
+
+.timer-badge.danger{
+  color:#ef4444;
+  border-color:rgba(239,68,68,.5);
+
+  animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+/* QUESTION */
+
+.q-card{
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.28);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5),
+    0 0 25px rgba(212,175,55,.035),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.q-header{
+  display:flex;
+  align-items:center;
+
+  padding:7px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #b58b22
+    );
+
+  box-shadow:
+    0 4px 20px rgba(212,175,55,.15);
+}
+
+.q-num{
+  padding:4px 11px;
+
+  border-radius:8px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.18);
+
+  color:#fff9d9;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.q-text{
+  padding:22px 18px 15px;
+
+  color:#f5f1e5;
+
+  font-size:15px;
+  font-weight:700;
+
+  line-height:1.7;
+
+  border-bottom:1px solid rgba(212,175,55,.15);
+
+  text-align:left;
+  direction:ltr;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:18px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px 16px;
+
+  min-height:55px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #0d0d0d
+    );
+
+  border:1.5px solid rgba(212,175,55,.18);
+
+  color:#eee8d8;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  direction:ltr;
+  text-align:left;
+
+  user-select:none;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.opt:hover:not(.disabled){
+  border-color:#d4af37;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(212,175,55,.12),
+      rgba(212,175,55,.035)
+    );
+
+  transform:translateX(5px);
+
+  box-shadow:
+    0 5px 20px rgba(212,175,55,.1),
+    inset 0 0 15px rgba(212,175,55,.03);
+}
+
+.opt-letter{
+  width:29px;
+  height:29px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.opt.correct{
+  border-color:#20c77a;
+  background:rgba(32,199,122,.07);
+}
+
+.opt.correct .opt-letter{
+  background:#20c77a;
+  border-color:#20c77a;
+  color:#fff;
+}
+
+.opt.wrong{
+  border-color:#ef4444;
+  background:rgba(239,68,68,.07);
+}
+
+.opt.wrong .opt-letter{
+  background:#ef4444;
+  border-color:#ef4444;
+  color:#fff;
+}
+
+.opt.disabled{
+  pointer-events:none;
+}
+
+/* FEEDBACK */
+
+.feedback-bar{
+  margin:0 18px 14px;
+
+  padding:12px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:800;
+
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.feedback-bar.ok{
+  background:rgba(32,199,122,.08);
+  color:#20c77a;
+  border:1px solid rgba(32,199,122,.25);
+}
+
+.feedback-bar.no{
+  background:rgba(239,68,68,.08);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.22);
+}
+
+.feedback-icon{
+  font-size:20px;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* EXPLANATION */
+
+.explanation{
+  margin:0 18px 14px;
+
+  padding:12px 14px;
+
+  background:rgba(212,175,55,.045);
+
+  border-radius:10px;
+
+  border-right:3px solid #d4af37;
+
+  color:#d8cfb5;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.nav-btns{
+  display:flex;
+  gap:10px;
+
+  padding:4px 18px 18px;
+}
+
+.btn{
+  flex:1;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  transition:.3s;
+}
+
+.btn-next,
+.btn-retry{
+  background:
+    linear-gradient(
+      135deg,
+      #9c7618,
+      #d4af37,
+      #f5d76e
+    );
+
+  color:#080808;
+
+  box-shadow:
+    0 6px 20px rgba(212,175,55,.2);
+}
+
+.btn-next:hover,
+.btn-retry:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(212,175,55,.3);
+}
+
+.btn-skip,
+.btn-home{
+  background:#111;
+
+  color:#cfc39b;
+
+  border:1px solid rgba(212,175,55,.22);
+}
+
+.btn-skip{
+  flex:0 0 auto;
+  padding:13px 18px;
+}
+
+.btn-skip:hover,
+.btn-home:hover{
+  border-color:#d4af37;
+  color:#f5d76e;
+}
+
+/* RESULTS */
+
+.result-hero{
+  text-align:center;
+
+  padding:30px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #090909
+    );
+
+  border:1px solid rgba(212,175,55,.3);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(212,175,55,.04);
+}
+
+.score-ring{
+  width:120px;
+  height:120px;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  margin:0 auto 18px;
+}
+
+.score-ring svg{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+}
+
+.score-ring circle{
+  fill:none;
+
+  stroke-width:5;
+
+  stroke-linecap:round;
+}
+
+.ring-bg{
+  stroke:#242019;
+}
+
+.ring-fill{
+  stroke:#d4af37;
+
+  transition:stroke-dashoffset 1s ease;
+}
+
+.score-num{
+  position:relative;
+
+  font-size:28px;
+  font-weight:900;
+}
+
+.score-pct{
+  position:relative;
+
+  color:var(--text3);
+
+  font-size:12px;
+}
+
+.result-grade{
+  margin-bottom:7px;
+
+  color:#f5d76e;
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.result-sub{
+  color:var(--text2);
+
+  font-size:14px;
+}
+
+.result-stats{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.rs{
+  padding:12px 8px;
+
+  background:#101010;
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:10px;
+}
+
+.rs .n{
+  font-size:20px;
+  font-weight:900;
+}
+
+.rs .l{
+  color:var(--text3);
+  font-size:11px;
+}
+
+/* REPORT */
+
+.report-title{
+  margin:28px 0 12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.report-item{
+  margin-bottom:10px;
+
+  padding:16px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-right:4px solid var(--border);
+
+  border-radius:14px;
+}
+
+.report-item.ok{
+  border-right-color:var(--success);
+}
+
+.report-item.no{
+  border-right-color:var(--danger);
+}
+
+.ri-q{
+  margin-bottom:8px;
+
+  font-size:13px;
+  font-weight:700;
+
+  line-height:1.6;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-row{
+  display:flex;
+  align-items:flex-start;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-badge{
+  padding:2px 8px;
+
+  flex-shrink:0;
+
+  border-radius:6px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.ri-yours{
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+}
+
+.ri-right{
+  background:rgba(32,199,122,.1);
+  color:#20c77a;
+}
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* INPUTS */
+
+.student-box{
+  text-align:right;
+
+  margin-bottom:14px;
+}
+
+.student-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--text2);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.student-input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#0c0c0c;
+
+  color:var(--text);
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.3s;
+}
+
+.student-input:focus{
+  border-color:#d4af37;
+
+  box-shadow:0 0 15px rgba(212,175,55,.1);
+}
+
+.student-error{
+  display:none;
+
+  margin-bottom:12px;
+
+  padding:10px;
+
+  color:#ef4444;
+
+  background:rgba(239,68,68,.08);
+
+  border:1px solid rgba(239,68,68,.2);
+
+  border-radius:10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding:22px 24px;
+
+  background:#050505;
+
+  border-top:1px solid rgba(212,175,55,.28);
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,.35);
+}
+
+.footer-brand{
+  color:#d8cfb5;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.footer-brand span{
+  color:#d4af37;
+}
+
+.footer-tg{
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 14px;
+  }
+
+  .nav-brand span{
+    display:none;
+  }
+
+  .hero-band{
+    padding:36px 14px 32px;
+  }
+
+  .hero-band h1{
+    font-size:24px;
+  }
+
+  .meta-pill{
+    padding:6px 12px;
+  }
+
+  .shell{
+    padding:22px 12px 60px;
+  }
+
+  .stats-row{
+    gap:7px;
+  }
+
+  .stat-box{
+    padding:11px 6px;
+  }
+
+  .prog-strip{
+    gap:8px;
+  }
+
+  .prog-label{
+    font-size:11px;
+  }
+
+  .timer-badge{
+    min-width:65px;
+    padding:0 8px;
+    font-size:12px;
+  }
+
+  .q-card{
+    border-radius:16px;
+  }
+
+  .q-text{
+    font-size:14px;
+  }
+
+  .opt{
+    font-size:13px;
+    padding:13px;
+  }
+
+  footer{
+    padding:20px 14px;
+  }
+}
+/* ===== Luxury WhatsApp Contact ===== */
+
+.contact-section {
+  margin: 35px auto 10px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.contact-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.contact-title h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-line {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.contact-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(212,175,55,.10),
+    rgba(255,255,255,.025)
+  );
+  color: var(--text);
+  text-decoration: none;
+  text-align: right;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(212,175,55,.15);
+}
+
+.contact-btn i {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 23px;
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+  background: rgba(212,175,55,.08);
+}
+
+.contact-btn:hover i {
+  background: var(--gold);
+  color: #080808;
+}
+
+.contact-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-btn strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="prog-bar"></div>
+
+<nav>
+
+  <a href="../index.html" class="nav-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    رجوع
+  </a>
+
+  <div class="nav-brand">
+    <div class="nav-logo-icon">NT</div>
+    <span>Nokhpa TEAM</span>
+  </div>
+
+  <div class="nav-right">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Change theme"
+    >
+      ☀️
+    </button>
+  </div>
+
+</nav>
+
+<section class="hero-band">
+
+  <div class="hero-band-icon">
+    👼🏻
+  </div>
+
+  <h1>Pediatric nursing</h1>
+
+  <p>Comprehensive Pediatric nursing Toddler </p>
+
+  <div class="hero-band-meta">
+
+    <div class="meta-pill">
+      📚
+      <span id="totalBadge">0 سؤال</span>
+    </div>
+
+    <div class="meta-pill">
+      ⏱️ 200 Min
+    </div>
+
+    <div class="meta-pill">
+      🔀 Shuffled
+    </div>
+
+  </div>
+
+</section>
+
+<main class="shell">
+
+  <div class="stats-row">
+
+    <div class="stat-box">
+      <div class="val stat-correct" id="sCorrect">0</div>
+      <div class="lbl">صحيح</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-wrong" id="sWrong">0</div>
+      <div class="lbl">خطأ</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-remain" id="sRemain">100%</div>
+      <div class="lbl">متبقي</div>
+    </div>
+
+  </div>
+
+  <div class="prog-strip">
+
+    <div class="prog-label" id="progLabel">
+      سؤال 1
+    </div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+
+    <div class="timer-badge" id="timerBadge">
+      ⏱️
+      <span id="timerTxt">60:00</span>
+    </div>
+
+  </div>
+
+  <div id="app"></div>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+    Nokhpa <span>TEAM</span>
+  </div>
+
+  <div class="footer-tg">
+    ✦ Nursing Process
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const QUESTIONS = [
+
+  {
+    t: "A nurse assesses a 2-year-old toddler whose weight is 12 kg. Using the lecture formula, which interpretation is most appropriate?",
+    o: ["The estimated weight is lower than expected.", "The estimated weight matches the formula.", "The estimated weight is higher than expected.", "The weight cannot be estimated using age."],
+    a: 1
+  },
+  {
+    t: "Two toddlers are assessed: Child A is 1 year old, and Child B is 3 years old. According to the weight formula, what is the difference between their estimated weights?",
+    o: ["2 kg", "4 kg", "6 kg", "8 kg"],
+    a: 1
+  },
+  {
+    t: "A nurse records a height of 85 cm for a 1-year-old toddler. Which statement correctly compares the recorded height with the lecture's estimation formula?",
+    o: ["The expected height is 80 cm.", "The expected height is 85 cm.", "The expected height is 90 cm.", "The expected height is 95 cm."],
+    a: 1
+  },
+  {
+    t: "A toddler gains 2.7 kg in one year, while another gains 1.8 kg. Which statement is correct?",
+    o: ["Both gains are within the stated average annual range.", "Only the first gain is within the stated range.", "Only the second gain is within the stated range.", "Both gains exceed the expected range."],
+    a: 0
+  },
+  {
+    t: "Which combination correctly differentiates the changes in head and chest circumference during toddlerhood?",
+    o: ["Head circumference increases 12 cm during the second year, and chest remains smaller.", "Head circumference increases approximately 2 cm during the second year, and chest circumference exceeds head circumference.", "Head circumference increases 2 cm during the first year, and chest circumference remains equal.", "Head circumference stops increasing completely during the second year."],
+    a: 1
+  },
+  {
+    t: "A nurse measures the head circumference of a toddler and compares it with measurements taken during infancy. Which observation reflects the expected difference?",
+    o: ["Head circumference increases faster during the second year.", "Head circumference increases approximately 12 cm during the first year but only 2 cm during the second year.", "Head circumference increases approximately 2 cm during the first year but 12 cm during the second year.", "Head circumference increases equally during both years."],
+    a: 1
+  },
+  {
+    t: "A toddler has a pulse of 98 beats/min and a respiration rate of 37/min. Which interpretation is correct according to the lecture?",
+    o: ["Both measurements are below the expected ranges.", "Both measurements are at the lower and upper boundaries of their respective expected ranges.", "The pulse is below normal, while respiration is above normal.", "Both measurements are above the expected ranges."],
+    a: 1
+  },
+  {
+    t: "Which blood pressure reading falls outside the stated toddler range?",
+    o: ["86/42 mm Hg", "100/60 mm Hg", "106/63 mm Hg", "110/65 mm Hg"],
+    a: 3
+  },
+  {
+    t: "A toddler's physiological measurements are: pulse 140 beats/min, respiration 22/min, and blood pressure 86/42 mm Hg. How should the nurse interpret these values?",
+    o: ["All measurements are within the stated ranges.", "Only pulse and respiration are within the stated ranges.", "Only blood pressure is within the stated range.", "All measurements are below the expected ranges."],
+    a: 0
+  },
+  {
+    t: "A parent notices that the toddler has a protruded abdomen despite having no information suggesting delayed development. Which explanation from the lecture is most appropriate?",
+    o: ["Immature abdominal muscles", "Excessive abdominal muscle development", "Delayed development of the chest circumference", "Incomplete development of binocular vision"],
+    a: 0
+  },
+  {
+    t: "Which dental finding is expected during the second year of life?",
+    o: ["Eight new teeth, including canines and first molars", "All 20 deciduous teeth erupt simultaneously", "Only permanent teeth begin to erupt", "Eight new teeth, including the permanent incisors"],
+    a: 0
+  },
+  {
+    t: "A 30-month-old toddler has a full set of primary teeth. Which statement best explains this finding?",
+    o: ["This is earlier than expected because all primary teeth appear by 18 months.", "This is consistent with the expected development of primary teeth.", "This is abnormal because primary teeth are completed after 4 years.", "This indicates premature eruption of permanent teeth."],
+    a: 1
+  },
+  {
+    t: "Which statement correctly compares the development of binocular vision and visual acuity?",
+    o: ["Binocular vision is well developed by 15 months, while visual acuity of 6/6 is achieved during toddlerhood.", "Visual acuity of 6/6 is achieved at 15 months, while binocular vision develops at 3 years.", "Both abilities are completed only after 4 years.", "Binocular vision and visual acuity are unrelated to toddler development."],
+    a: 0
+  },
+  {
+    t: "A nurse assesses a toddler's sensory development. Which finding would be consistent with the lecture?",
+    o: ["Smell and taste become less developed.", "Hearing and touch remain unchanged.", "Smell, hearing, touch, and taste become increasingly well developed.", "All senses become fully developed at 12 months."],
+    a: 2
+  },
+  {
+    t: "A toddler walks alone well and can creep upstairs. The nurse also observes that the child builds a tower of 2–3 blocks. Which age is most likely?",
+    o: ["15 months", "18 months", "24 months", "30 months"],
+    a: 0
+  },
+  {
+    t: "Which combination is most appropriate for a 15-month-old?",
+    o: ["Walks alone, builds a tower of 2–3 blocks, and makes a line with a crayon.", "Runs well, imitates a circle, and opens doors.", "Jumps down from chairs and drinks independently.", "Walks upstairs alone using both feet on each step and imitates a circle."],
+    a: 0
+  },
+  {
+    t: "A nurse asks a toddler to imitate a vertical line. The child can also remove simple clothing such as shoes. Which age is most consistent with these abilities?",
+    o: ["15 months", "18 months", "24 months", "30 months"],
+    a: 1
+  },
+  {
+    t: "Which ability distinguishes the 18-month-old from the 15-month-old according to the lecture?",
+    o: ["Building a tower of 2–3 blocks", "Making a line with a crayon", "Imitating a vertical line", "Holding a cup with all fingers"],
+    a: 2
+  },
+  {
+    t: "A toddler can walk up and down stairs with one hand held, run, and jump in place. Which additional finding would support the same developmental age?",
+    o: ["Holds a cup with both hands", "Holds a cup with one hand", "Imitates a circle", "Makes simple lines independently"],
+    a: 0
+  },
+  {
+    t: "A nurse observes a toddler holding a cup with both hands and transferring objects from one hand to the other. Which additional fine motor ability is expected?",
+    o: ["Opens doors by turning doorknobs", "Imitates a vertical line", "Drinks without assistance", "Imitates a circle"],
+    a: 1
+  },
+  {
+    t: "Which finding is more consistent with a 24-month-old than an 18-month-old?",
+    o: ["Runs and jumps in place", "Holds a cup with both hands", "Opens doors by turning doorknobs", "Removes simple clothing such as shoes"],
+    a: 2
+  },
+  {
+    t: "Two toddlers demonstrate different abilities. Child A imitates a vertical line, while Child B imitates a circle. Which age comparison is correct?",
+    o: ["Child A: 24 months; Child B: 18 months", "Child A: 18 months; Child B: 24 months", "Both abilities are specific to 30 months.", "Both abilities are specific to 15 months."],
+    a: 1
+  },
+  {
+    t: "A toddler runs well and walks upstairs independently using both feet on the same step. Which additional finding would be expected?",
+    o: ["Makes simple lines", "Holds a cup with one hand", "Imitates a circle", "All of the above"],
+    a: 3
+  },
+  {
+    t: "Which combination best identifies the gross motor development of a 30-month-old?",
+    o: ["Creeps upstairs and walks alone", "Runs and jumps in place", "Walks upstairs alone using both feet on each step", "Jumps down from chairs and takes a few steps on tiptoes"],
+    a: 3
+  },
+  {
+    t: "A nurse observes good hand-finger coordination, simple line drawing, and independent drinking. Which age group is most appropriate?",
+    o: ["15 months", "18 months", "24 months", "30 months"],
+    a: 3
+  },
+  {
+    t: "Which sequence correctly matches the progression of cup-holding skills?",
+    o: ["15 months: one hand → 18 months: all fingers → 24 months: both hands", "15 months: all fingers → 18 months: both hands → 24 months: one hand", "15 months: both hands → 18 months: one hand → 24 months: all fingers", "15 months: without assistance → 18 months: both hands → 24 months: one hand"],
+    a: 1
+  },
+  {
+    t: "A nurse compares a 24-month-old with a 30-month-old. Which ability is specifically mentioned at 30 months but not listed under 24 months?",
+    o: ["Running well", "Opening doors with doorknobs", "Jumping down from chairs", "Holding a cup with one hand"],
+    a: 2
+  },
+  {
+    t: "Which of the following is the most accurate comparison of stair-climbing abilities?",
+    o: ["At 15 months, the toddler walks upstairs alone; at 24 months, the toddler creeps upstairs.", "At 18 months, the toddler walks up and down stairs with one hand held; at 24 months, the toddler walks upstairs alone using both feet on the same step.", "At 24 months, the toddler walks down stairs independently using alternating feet.", "At 30 months, the toddler first learns to creep upstairs."],
+    a: 1
+  },
+  {
+    t: "A child is able to remove shoes independently but cannot yet open doors using doorknobs. Which age is most consistent with the described abilities?",
+    o: ["15 months", "18 months", "24 months", "30 months"],
+    a: 1
+  },
+  {
+    t: "Which developmental ability is common to the motor description of a 15-month-old but is not listed under the 18-month-old?",
+    o: ["Walking alone well", "Running", "Jumping in place", "Walking up and down stairs with one hand held"],
+    a: 0
+  },
+  {
+    t: "A 15-month-old says 4–6 words, mainly names. Which statement correctly describes the expected progression by 18 months?",
+    o: ["Vocabulary decreases to 2–3 words.", "Vocabulary increases to 7–20 words.", "The toddler uses approximately 50 words.", "The toddler is expected to use complete sentences."],
+    a: 1
+  },
+  {
+    t: "A 24-month-old uses approximately 50 words but does not yet use long sentences. Which language pattern is most consistent with the lecture?",
+    o: ["Two-word sentences", "Only isolated sounds", "Complete grammatical sentences", "No verbal communication"],
+    a: 0
+  },
+  {
+    t: "A toddler at 30 months knows their full name, can name a color, and holds up fingers to show age. Which additional statement is correct?",
+    o: ["Verbal language is increasing steadily.", "Vocabulary remains limited to 4–6 words.", "The toddler is expected to communicate only through gestures.", "Language development stops at 24 months."],
+    a: 0
+  },
+  {
+    t: "Which statement correctly differentiates social development at 15 and 18 months?",
+    o: ["15 months: plays with other children; 18 months: explores drawers.", "15 months: explores drawers; 18 months: plays in the company of other children.", "15 months: dry by day; 18 months: dry by night.", "15 months: knows full name and sex; 18 months: explores drawers."],
+    a: 1
+  },
+  {
+    t: "A toddler has achieved daytime dryness but does not remain dry at night. Which social milestone is most consistent with the lecture?",
+    o: ["15 months", "18 months", "24 months", "36 months"],
+    a: 2
+  },
+  {
+    t: "Which combination is correctly associated with 36 months?",
+    o: ["Explores drawers and says 4–6 words", "Plays with other children and imitates a vertical line", "Knows full name, age, and sex and is dry by night", "Uses approximately 50 words and holds a cup with both hands"],
+    a: 2
+  },
+  {
+    t: "A toddler shows less fear of strangers but develops anxiety when separated from the usual caregiver. Which statement best describes this situation?",
+    o: ["Reduced fear of strangers excludes separation anxiety.", "Separation anxiety may develop despite less fear of strangers.", "Separation anxiety occurs only during infancy.", "Both behaviors indicate delayed social development."],
+    a: 1
+  },
+  {
+    t: "A toddler becomes frightened by loud voices, falling, and unfamiliar places. Which interpretation is most appropriate?",
+    o: ["These are fears described during toddler emotional development.", "These findings indicate that the toddler has no sense of autonomy.", "These are exclusively signs of delayed language development.", "These fears are evidence of abnormal motor development."],
+    a: 0
+  },
+  {
+    t: "A toddler expresses anger by crying and showing uncontrolled physical activity when frustrated. Which emotional characteristic is being demonstrated?",
+    o: ["Separation anxiety", "Temper tantrum", "Ritualistic behavior", "Sibling rivalry"],
+    a: 1
+  },
+  {
+    t: "A 2-year-old is allowed to explore the environment and perform tasks independently within safe limits. Which psychosocial outcome is most likely according to Erikson?",
+    o: ["Shame", "Doubt", "Autonomy", "Inferiority"],
+    a: 2
+  },
+  {
+    t: "A toddler repeatedly attempts independent activities but is made to feel that these attempts are ineffective. Which developmental consequence is most consistent with Erikson?",
+    o: ["Increased self-reliance", "Shame and doubt", "Concrete operational thinking", "Improved emotional regulation"],
+    a: 1
+  },
+  {
+    t: "Which statement best describes the relationship between the infant period and Erikson's toddler crisis?",
+    o: ["Trust learned during infancy supports the development of autonomy during toddlerhood.", "Autonomy develops before trust.", "Shame and doubt are the primary tasks of infancy.", "Trust and autonomy are unrelated developmental concepts."],
+    a: 0
+  },
+  {
+    t: "A nurse explains that Freud's anal stage involves a shift in the child's focus of libidinal pleasure. Which transition is correct?",
+    o: ["From the anal region to the mouth", "From the mouth to the anal region", "From the eyes to the ears", "From the hands to the feet"],
+    a: 1
+  },
+  {
+    t: "A toddler's self-concept as a girl or boy is probably completed at which age according to Freud's description in the lecture?",
+    o: ["8 months", "1 year", "2.5–3 years", "4–5 years"],
+    a: 2
+  },
+  {
+    t: "Which comparison between Erikson and Freud is correctly matched?",
+    o: ["Erikson: anal stage; Freud: autonomy versus shame and doubt", "Erikson: autonomy versus shame and doubt; Freud: anal stage", "Erikson: pre-operational stage; Freud: concrete operational stage", "Erikson: libido transfer; Freud: graded independence"],
+    a: 1
+  },
+  {
+    t: "A toddler repeatedly experiments with objects to discover different ways of handling them. Why is the toddler described as a \"little scientist\" by Piaget?",
+    o: ["The toddler has achieved adult-like logical reasoning.", "The toddler is interested in discovering new ways to handle objects and the results of different actions.", "The toddler can understand all relationships among phenomena.", "The toddler has completed the concrete operational stage."],
+    a: 1
+  },
+  {
+    t: "A nurse discusses the two cognitive periods listed in the lecture. Which sequence is correct?",
+    o: ["Pre-operational: 2–7 years; concrete operational: 7–11 years", "Pre-operational: 7–11 years; concrete operational: 2–7 years", "Pre-operational: 1–3 years; concrete operational: 3–5 years", "Pre-operational: 8 months–4 years; concrete operational: 4–7 years"],
+    a: 0
+  },
+  {
+    t: "A child uses language effectively and has memory and thought but cannot understand relationships among phenomena intellectually. Which stage is described?",
+    o: ["Concrete operational", "Pre-operational", "Anal stage", "Autonomy stage"],
+    a: 1
+  },
+  {
+    t: "Which statement is incorrect about the pre-operational stage?",
+    o: ["It extends from 2 to 7 years.", "The child uses language well.", "The child has memory and thought.", "The child is intellectually capable of understanding all relationships among phenomena."],
+    a: 3
+  },
+  {
+    t: "A nurse is comparing the three developmental theories discussed in the lecture. Which matching is correct?",
+    o: ["Erikson – cognitive exploration; Freud – autonomy; Piaget – anal stage", "Erikson – autonomy versus shame and doubt; Freud – anal stage; Piaget – pre-operational thinking", "Erikson – libido transfer; Freud – little scientist; Piaget – graded independence", "Erikson – concrete operations; Freud – shame and doubt; Piaget – elimination control"],
+    a: 1
+  },
+  {
+    t: "A toddler receives tender, loving care and feels secure with the parents. Which need is primarily being fulfilled?",
+    o: ["Elimination control", "Love and security", "Graded independence", "Language learning"],
+    a: 1
+  },
+  {
+    t: "Which statement best differentiates love and security from graded independence?",
+    o: ["Love and security provide emotional safety, while graded independence allows gradual self-directed activity within safe limits.", "Love and security refer only to physical growth, while graded independence refers only to language.", "Both concepts mean allowing the toddler to do everything without supervision.", "Graded independence means preventing the toddler from exploring."],
+    a: 0
+  },
+  {
+    t: "A toddler's parents gradually permit independent activities that produce pleasurable results. Which developmental outcome is expected?",
+    o: ["Shame and doubt", "Self-reliance and a sense of adequacy of autonomy", "Increased dependence", "Delayed speech"],
+    a: 1
+  },
+  {
+    t: "A toddler wants to perform many activities but is not physically capable of doing them safely. What should parents provide?",
+    o: ["Complete freedom without regulation", "A gradually expanding area of growth in a safe environment", "Continuous punishment for unsafe attempts", "Complete restriction of exploration"],
+    a: 1
+  },
+  {
+    t: "A child can perform some activities without injury but is prevented from doing them simply because the parents say \"No.\" Which concept from the lecture is most relevant?",
+    o: ["The child may need time to learn which activities are safe and permitted.", "The child has completed all stages of autonomy.", "The child has entered the concrete operational stage.", "The child is demonstrating delayed sensory development."],
+    a: 0
+  },
+  {
+    t: "Which combination correctly describes bladder control development?",
+    o: ["Daytime control: 3.5–5 years; nighttime control: 2–2.5 years", "Daytime control: 2–2.5 years; nighttime control: 3.5–5 years", "Daytime and nighttime control: both completed at 1 year", "Daytime control: 1.5 years; nighttime control: 2 years"],
+    a: 1
+  },
+  {
+    t: "A toddler can stand alone but has not yet demonstrated psychological readiness for toilet training. What is the most appropriate advice?",
+    o: ["Begin toilet training immediately because standing alone is sufficient.", "Consider both physiological and psychological readiness.", "Delay toilet training until 5 years in every case.", "Begin punishment to establish bladder control."],
+    a: 1
+  },
+  {
+    t: "According to the lecture, the average healthy, intelligent child usually starts bowel control at approximately:",
+    o: ["6 months", "1 year", "2.5 years", "3.5 years"],
+    a: 1
+  },
+  {
+    t: "Which statement correctly differentiates bowel control from nighttime bladder control in the lecture?",
+    o: ["Bowel control is usually completed around 1.5 years, whereas nighttime bladder control may develop between 3.5 and 5 years.", "Bowel control is completed at 5 years, whereas nighttime bladder control is completed at 1.5 years.", "Both are generally completed by 1 year.", "Both are dependent only on the ability to stand alone."],
+    a: 0
+  },
+  {
+    t: "A toddler remains dry for more than 2 hours, has words for urine and stool, and shows discomfort with a soiled diaper. What is the most appropriate conclusion?",
+    o: ["The toddler shows signs of readiness for toilet training.", "The toddler demonstrates delayed motor development.", "The toddler is experiencing regression.", "The toddler is not psychologically prepared under any circumstances."],
+    a: 0
+  },
+  {
+    t: "Which finding is NOT listed as a sign of readiness for toilet training?",
+    o: ["Remaining dry for at least 2 hours", "Having words for urine and stool", "Bringing a clean diaper to the parent", "Imitating a circle"],
+    a: 3
+  },
+  {
+    t: "A parent wants to reward a toddler for using the toilet. Which method is specifically mentioned in the lecture?",
+    o: ["A sticker chart", "Withholding food", "Repeated verbal punishment", "Removing the child's security object"],
+    a: 0
+  },
+  {
+    t: "A toddler refuses to sit on the toilet but feels more comfortable using a small potty chair. Which nursing advice is most appropriate?",
+    o: ["Force the child to use the regular toilet.", "Recognize that toddlers generally feel more comfortable using a potty chair.", "Stop toilet training permanently.", "Use punishment until the child accepts the toilet."],
+    a: 1
+  },
+  {
+    t: "Which parental response is most likely to interfere with successful toilet training?",
+    o: ["Rewarding successful toilet use", "Using positive reinforcement", "Punishing the toddler for accidents", "Recognizing readiness signs"],
+    a: 2
+  },
+  {
+    t: "A toddler has an accident during toilet training. Which approach best follows the lecture?",
+    o: ["Punish the toddler to prevent future accidents.", "Recognize that punishment is ineffective and may deter toilet use.", "Remove all opportunities for independent toileting.", "Stop offering positive reinforcement."],
+    a: 1
+  },
+  {
+    t: "A 2-year-old has not started speaking. According to the lecture, what should be the nurse's priority?",
+    o: ["Wait until the child reaches 3 years without investigation.", "Investigate possible causes of delayed speech.", "Assume the child has poor social development.", "Begin teaching toilet training."],
+    a: 1
+  },
+  {
+    t: "A toddler has a limited vocabulary, and the parents report that the child has difficulty understanding spoken words. Which factor should be considered because vocabulary size depends greatly on it?",
+    o: ["Intelligence", "Gross motor ability", "Elimination control", "Ritualistic behavior"],
+    a: 0
+  },
+  {
+    t: "A toddler grows up in a poor social environment with limited opportunities to observe appropriate speech. Which consequence is most likely according to the lecture?",
+    o: ["Faster vocabulary development", "Delayed speech development due to poor models to imitate", "Earlier completion of language development", "Improved grammatical accuracy"],
+    a: 1
+  },
+  {
+    t: "A child has been ill in an institution for a long period. The child's speech development is slower than that of healthy children. Which combination best explains this finding?",
+    o: ["Increased contact with other children and fewer opportunities to speak", "Fewer contacts with other children and having needs answered before asking", "Excessive independence and improved social interaction", "Increased exposure to appropriate speech models"],
+    a: 1
+  },
+  {
+    t: "A toddler imitates incorrect words because the adults around the child use incorrect speech. Which factor is responsible?",
+    o: ["Deafness", "Poor speech models", "Low intelligence only", "Separation anxiety"],
+    a: 1
+  },
+  {
+    t: "A toddler refuses to imitate the mother's words after being forced to speak before being mature enough. Which explanation is most consistent with the lecture?",
+    o: ["Negativism", "Deafness", "Poor oral hygiene", "Sibling rivalry"],
+    a: 0
+  },
+  {
+    t: "A toddler cannot hear what other people say and therefore cannot imitate their speech. Which statement is correct?",
+    o: ["The child will necessarily develop normal speech without intervention.", "The child will not speak unless special training has been provided.", "The child will develop speech faster than other toddlers.", "Hearing has no relationship to speech imitation."],
+    a: 1
+  },
+  {
+    t: "Which statement correctly describes the sex-related differences in speech development mentioned in the lecture?",
+    o: ["Girls are usually slower and have smaller vocabularies than boys.", "Boys are usually slower, have smaller vocabularies, and make more grammatical errors than girls.", "Boys and girls always develop speech at exactly the same rate.", "Boys usually have larger vocabularies and fewer grammatical errors."],
+    a: 1
+  },
+  {
+    t: "Which of the following correctly matches all the mentioned causes of delayed speech?",
+    o: ["Intelligence, social and cultural environment, illness, poor models, negativism, deafness, and sex", "Nutrition, dental caries, sibling rivalry, obesity, and motor development", "Separation anxiety, toilet training, tantrums, and ritualistic behavior only", "Physical growth, head circumference, chest circumference, and tooth eruption"],
+    a: 0
+  },
+  {
+    t: "A mother communicates with her toddler using words accompanied by facial expressions, gestures, and changes in tone of voice. What is the main benefit of this approach?",
+    o: ["It helps the child understand the meaning of words.", "It prevents the development of autonomy.", "It replaces the need for verbal communication.", "It prevents all speech delays."],
+    a: 0
+  },
+  {
+    t: "A toddler eats only one type of food for several days and then refuses it for weeks. The parents become worried and stop offering other foods. Which intervention is most appropriate?",
+    o: ["Continue offering healthy food choices during the food jag.", "Allow the toddler to eat only junk food.", "Force the toddler to eat the preferred food continuously.", "Remove all healthy foods until the food jag ends."],
+    a: 0
+  },
+  {
+    t: "A toddler refuses a new food even after it has been offered twice. Which advice is most consistent with the lecture?",
+    o: ["Stop offering the food permanently.", "Continue offering the new food because acceptance may require many repeated exposures.", "Punish the toddler for refusing.", "Replace the food with sweets."],
+    a: 1
+  },
+  {
+    t: "Parents want to encourage their toddler to try more foods. Which environmental factor may increase the toddler's willingness to try unfamiliar foods?",
+    o: ["Exposure to other children who eat those foods", "Eating alone without family interaction", "Removing familiar foods from every meal", "Offering unfamiliar foods only once"],
+    a: 0
+  },
+  {
+    t: "Which combination represents the recommended approach to healthy eating in toddlers?",
+    o: ["Calm meals, appropriate parental role modeling, praise, and familiar foods alongside new foods", "Forced feeding, punishment, and removal of familiar foods", "Eating in a stressful environment and offering only new foods", "Allowing unlimited juice and avoiding repeated food exposure"],
+    a: 0
+  },
+  {
+    t: "A nurse discusses obesity risk factors with parents. Which factor is identified as the greatest risk factor for overweight or obesity in children?",
+    o: ["Having a parent with a high BMI", "Having a parent with a low BMI", "Having delayed language development", "Having a protruded abdomen"],
+    a: 0
+  },
+  {
+    t: "A toddler drinks large quantities of juice because of its sweet taste. Which explanation should the nurse provide?",
+    o: ["Juice intake is unrelated to obesity.", "Excessive juice intake is another factor contributing to obesity in young children.", "Juice intake prevents dental caries.", "Juice intake improves the development of bladder control."],
+    a: 1
+  },
+  {
+    t: "A parent believes that primary teeth do not need special care because permanent teeth will eventually replace them. Which nursing response is most appropriate?",
+    o: ["Primary teeth do not develop cavities.", "Preventing cavities in primary teeth remains important even though they are eventually replaced.", "Dental care should begin only after permanent teeth erupt.", "Primary teeth require no professional dental care."],
+    a: 1
+  },
+  {
+    t: "Which combination contains only factors contributing to dental caries according to the lecture?",
+    o: ["Poor oral hygiene, prolonged bottle use, lack of fluoride, and delayed professional dental care", "Good oral hygiene, fluoride intake, and regular professional dental care", "Excessive physical activity, delayed speech, and poor sleep", "Food jags, separation anxiety, and ritualistic behavior"],
+    a: 0
+  },
+  {
+    t: "A parent asks how to progress with cleaning the toddler's teeth. Which instruction is correct?",
+    o: ["Begin with fluoridated toothpaste in large amounts.", "Begin with brushing using water, then use a very small pea-sized amount of fluoridated toothpaste.", "Use water only throughout toddlerhood.", "Avoid brushing until all permanent teeth erupt."],
+    a: 1
+  },
+  {
+    t: "A toddler reaches 30 months of age. Which dental finding should the nurse expect?",
+    o: ["A full set of primary teeth", "Only eight primary teeth", "Complete eruption of permanent teeth", "Absence of canines and first molars"],
+    a: 0
+  },
+  {
+    t: "A toddler repeatedly says \"No\" and insists on performing activities independently. Which developmental motivation is primarily responsible?",
+    o: ["Desire for autonomy and independence", "Desire to avoid social interaction", "Inability to recognize familiar people", "Regression to infancy"],
+    a: 0
+  },
+  {
+    t: "A toddler appears negativistic when asked to stop playing and eat. However, the child does not actually refuse eating. What is the most accurate interpretation?",
+    o: ["The child may simply not want to stop the current activity.", "The child has a permanent behavioral problem.", "The child is demonstrating sibling rivalry.", "The child is experiencing delayed cognitive development."],
+    a: 0
+  },
+  {
+    t: "Parents frequently use commands and interrupt their toddler's activities. Which nursing recommendation is most appropriate for managing negativism?",
+    o: ["Increase commands and interruptions.", "Use opposition to overcome opposition.", "Avoid excessive commands and provide physical help when needed.", "Punish the child for saying \"I won't.\""],
+    a: 2
+  },
+  {
+    t: "A toddler repeatedly follows the same sequence during bathing, eating, and sleeping. According to the lecture, what is the main reason for this behavior?",
+    o: ["The child feels capable of mastering familiar tasks through rituals.", "The child is unable to develop independence.", "The child is demonstrating delayed language development.", "The child is attempting to compete with siblings."],
+    a: 0
+  },
+  {
+    t: "Which age range is most associated with ritualistic behavior?",
+    o: ["8 months to 1 year", "1–2 years only", "2–4 years", "5–7 years"],
+    a: 2
+  },
+  {
+    t: "A toddler is told to perform one of two actions but attempts both because the child cannot decide which action to choose. Which personality trait is demonstrated?",
+    o: ["Negativism", "Slowness in carrying out orders", "Regression", "Sibling rivalry"],
+    a: 1
+  },
+  {
+    t: "Which explanation best describes why a toddler may become quicker at making decisions over time?",
+    o: ["The child learns through experience which action should be taken.", "The child completely stops exploring the environment.", "Parents prevent the child from choosing between actions.", "The child develops complete intellectual understanding of all phenomena."],
+    a: 0
+  },
+  {
+    t: "A toddler experiences frustration because internal impulses cannot be integrated with the demands of reality. The child responds with crying and violent bodily activity. What is the underlying problem?",
+    o: ["Ritualistic behavior", "Temper tantrums", "Separation anxiety", "Negativism"],
+    a: 1
+  },
+  {
+    t: "A nurse explains that understanding a toddler's temperament helps parents manage behavior. Which benefit is most appropriate?",
+    o: ["It helps parents plan routines that minimize unwanted behaviors and promote positive ones.", "It eliminates the need for parental supervision.", "It prevents the child from encountering unfamiliar situations.", "It ensures that tantrums will never occur."],
+    a: 0
+  },
+  {
+    t: "A toddler is slow to warm up and becomes uncomfortable in new social situations. Which parental approach is most appropriate?",
+    o: ["Avoid all unfamiliar places permanently.", "Allow time to become comfortable and continue gradual exposure to new situations.", "Force immediate interaction with unfamiliar people.", "Punish the child for showing discomfort."],
+    a: 1
+  },
+  {
+    t: "Parents of a toddler with a difficult temperament report frequent meltdowns when daily schedules change. Which intervention should the nurse emphasize?",
+    o: ["Frequent changes in eating and sleeping schedules", "Paying particular attention to deviations in eating and nap routines", "Eliminating all daily routines", "Avoiding planned activities completely"],
+    a: 1
+ },
+  {
+    t: "The nurse should understand the changes occurring during toddlerhood to provide appropriate anticipatory guidance and support to the family.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Hospitalization cannot alter the toddler's growth and development.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The toddler's primary developmental task according to the lecture is establishing independence and autonomy.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Love and security help the toddler feel safe enough to grow and reach more mature developmental goals.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Graded independence means allowing the toddler to perform every desired activity regardless of physical or emotional safety.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A toddler who receives graded independence and experiences pleasurable results may develop self-reliance and a sense of adequacy of autonomy.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The toddler's activities should be regulated because the child may want to perform activities beyond their physical abilities.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Daytime bladder control is expected to be established later than nighttime bladder control.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A toddler's ability to stand alone is mentioned as an indication of physiological readiness for toilet training.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Remaining dry for at least 2 hours and expressing dissatisfaction with a soiled diaper are signs of readiness for toilet training.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "A toddler who brings a clean diaper to the parent may demonstrate readiness for toilet training.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Punishing a toddler for toilet-training accidents is recommended because it increases the child's willingness to use the toilet.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Positive reinforcement, including rewards such as a sticker chart, is recommended for successful toilet use.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Toddlers generally feel more comfortable using a potty chair.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Boys are usually faster than girls in learning to talk and generally have larger vocabularies.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Children who cannot hear what others say may have difficulty imitating speech.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "A child's vocabulary depends to a great extent upon intelligence.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Facial expressions, gestures, and tone of voice help toddlers understand the meaning of spoken words.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "During a food jag, parents should stop offering healthy alternatives until the toddler accepts a different food.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Including familiar foods that the child likes alongside new foods may help encourage acceptance of unfamiliar foods.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Parents should serve as appropriate role models for healthy eating habits.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Delayed or absent professional dental care is one of the factors contributing to dental caries.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Ritualistic behavior is most common between 2 and 4 years and may involve eating, bathing, and sleeping.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "A toddler's separation anxiety may be minimized by consistent routines and the use of a familiar security object such as a blanket or toy.",
+    o: ["True", "False"],
+    a: 0
+  }
+];
+/* =====================================================
+   ENGINE
+===================================================== */
+
+let questions=[];
+let current=0;
+let correct=0;
+let wrong=0;
+let answered=0;
+
+let answers=[];
+let wrongSet=[];
+
+let totalTime=60*60;
+let timeLeft=totalTime;
+let timerInterval=null;
+
+let studentName="";
+let studentCode="";
+
+// تثبيت نتيجة الامتحان الأصلي وفصل مراجعة الأخطاء
+let reviewMode = false;
+let originalResult = null;
+
+const LETTERS=["A","B","C","D","E","F"];
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  const arr=[...array];
+
+  for(let x=arr.length-1;x>0;x--){
+
+    const y=Math.floor(Math.random()*(x+1));
+
+    [arr[x],arr[y]]=[arr[y],arr[x]];
+
+  }
+
+  return arr;
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* INIT */
+
+function init(pool, isReview = false){
+
+  clearInterval(timerInterval);
+
+  // المراجعة منفصلة عن الامتحان الأصلي
+  if(!isReview){
+    reviewMode = false;
+    originalResult = null;
+  }else{
+    reviewMode = true;
+  }
+
+  questions=shuffle(pool);
+
+  current=0;
+  correct=0;
+  wrong=0;
+  answered=0;
+
+  answers=new Array(questions.length).fill(null);
+  wrongSet=[];
+
+  timeLeft=totalTime;
+
+  document.getElementById("totalBadge").textContent=
+    questions.length+" سؤال";
+
+  startTimer();
+
+  render();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+
+      finish();
+
+    }
+
+  },1000);
+
+}
+
+
+function updateTimer(){
+
+  const min=Math.floor(timeLeft/60);
+
+  const sec=timeLeft%60;
+
+  const timer=document.getElementById("timerTxt");
+
+  const badge=document.getElementById("timerBadge");
+
+  timer.textContent=
+    `${min}:${sec<10?"0":""}${sec}`;
+
+  badge.className="timer-badge";
+
+  if(timeLeft<=120){
+
+    badge.classList.add("danger");
+
+  }else if(timeLeft<=300){
+
+    badge.classList.add("warn");
+
+  }
+
+}
+
+
+/* TOP */
+
+function updateTop(){
+
+  const total=questions.length;
+
+  document.getElementById("sCorrect").textContent=correct;
+
+  document.getElementById("sWrong").textContent=wrong;
+
+  const remaining=total-answered;
+
+  document.getElementById("sRemain").textContent=
+    Math.round((remaining/total)*100)+"%";
+
+  document.getElementById("progLabel").textContent=
+    "سؤال "+(current+1)+" / "+total;
+
+  const percent=((current+1)/total)*100;
+
+  document.getElementById("progFill").style.width=
+    percent+"%";
+
+  document.getElementById("prog-bar").style.width=
+    percent+"%";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+  updateTop();
+
+  const q=questions[current];
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="q-card">
+
+      <div class="q-header">
+
+        <div class="q-num">
+          سؤال ${current+1} / ${questions.length}
+        </div>
+
+      </div>
+
+
+      <div class="q-text">
+        ${escapeHTML(q.t)}
+      </div>
+
+
+      <div class="options">
+
+        ${q.o.map((option,index)=>`
+
+          <div
+            class="opt"
+            id="opt${index}"
+            onclick="choose(${index})"
+          >
+
+            <div class="opt-letter">
+              ${LETTERS[index] || index+1}
+            </div>
+
+            <div>
+              ${escapeHTML(option)}
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="nav-btns">
+
+        <button
+          class="btn btn-skip"
+          type="button"
+          onclick="skip()"
+        >
+
+          <i class="fa-solid fa-forward"></i>
+
+          تخطي
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* CHOOSE */
+
+function choose(answer){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  const q=questions[current];
+
+  answers[current]=answer;
+
+  answered++;
+
+  const isCorrect=
+    answer===q.a;
+
+  if(isCorrect){
+
+    correct++;
+
+  }else{
+
+    wrong++;
+
+  }
+
+  updateTop();
+
+
+  q.o.forEach((_,index)=>{
+
+    const option=
+      document.getElementById("opt"+index);
+
+    option.classList.add("disabled");
+
+    if(index===q.a){
+
+      option.classList.add("correct");
+
+    }
+
+    if(index===answer && answer!==q.a){
+
+      option.classList.add("wrong");
+
+    }
+
+  });
+
+
+  const card=
+    document.querySelector(".q-card");
+
+  const feedback=
+    document.createElement("div");
+
+  feedback.className=
+    "feedback-bar "+(isCorrect?"ok":"no");
+
+  feedback.innerHTML=isCorrect
+    ? `<span class="feedback-icon">🎉</span>
+       <span>إجابة صحيحة ✔</span>`
+    : `<span class="feedback-icon">😔</span>
+       <span>إجابة خاطئة ✖</span>`;
+
+  card
+    .querySelector(".options")
+    .after(feedback);
+
+
+  const nav=
+    card.querySelector(".nav-btns");
+
+  nav.innerHTML=`
+
+    <button
+      class="btn btn-next"
+      type="button"
+      onclick="next()"
+    >
+
+      ${
+        current<questions.length-1
+        ? '<i class="fa-solid fa-arrow-left"></i> السؤال التالي'
+        : '<i class="fa-solid fa-flag-checkered"></i> إنهاء الامتحان'
+      }
+
+    </button>
+
+  `;
+
+}
+
+
+/* SKIP */
+
+function skip(){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  answers[current]=-1;
+
+  answered++;
+
+  next();
+
+}
+
+
+/* NEXT */
+
+function next(){
+
+  if(current<questions.length-1){
+
+    current++;
+
+    render();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+/* STUDENT FORM */
+
+function showStudentForm(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="
+        font-size:45px;
+        margin-bottom:12px;
+      ">
+        📝
+      </div>
+
+
+      <div class="result-grade">
+        بيانات الطالب
+      </div>
+
+
+      <div class="result-sub"
+        style="margin-bottom:22px;"
+      >
+        من فضلك اكتب اسمك وكود الكشف قبل عرض النتيجة
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          الاسم
+        </label>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب اسمك بالكامل"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          كود الكشف
+        </label>
+
+        <input
+          id="studentCodeInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب كود الكشف"
+        >
+
+      </div>
+
+
+      <div
+        id="studentError"
+        class="student-error"
+      >
+        من فضلك اكتب الاسم وكود الكشف
+      </div>
+
+
+      <button
+        class="btn btn-next"
+        type="button"
+        onclick="saveStudentInfo()"
+      >
+
+        ✅ تأكيد وعرض النتيجة
+
+      </button>
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE STUDENT */
+
+function saveStudentInfo(){
+
+  const name=
+    document
+      .getElementById("studentNameInput")
+      .value
+      .trim();
+
+  const code=
+    document
+      .getElementById("studentCodeInput")
+      .value
+      .trim();
+
+  const error=
+    document.getElementById("studentError");
+
+  if(!name || !code){
+
+    error.style.display="block";
+
+    return;
+
+  }
+
+  studentName=name;
+  studentCode=code;
+
+  finish(true);
+
+}
+
+
+/* FINISH */
+
+function finish(showResult=false){
+
+  // عند انتهاء مراجعة الأخطاء، اعرض نتيجة التدريب فقط
+  if(reviewMode && !showResult){
+    clearInterval(timerInterval);
+    showReviewResult();
+    return;
+  }
+
+  if(!showResult){
+    showStudentForm();
+    return;
+  }
+
+  // لا تسمح للمراجعة بتغيير الدرجة الأصلية
+  if(reviewMode){
+    showReviewResult();
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+
+  const score=
+    Math.round((correct/total)*100);
+
+
+  wrongSet=questions
+    .map((q,index)=>{
+
+      if(answers[index]!==q.a){
+
+        return {
+          ...q,
+          myAns:answers[index]
+        };
+
+      }
+
+      return null;
+
+    })
+    .filter(Boolean);
+
+
+  let grade;
+  let gradeColor;
+
+
+  if(score>=90){
+
+    grade="🥇 ممتاز";
+    gradeColor="var(--success)";
+
+  }else if(score>=75){
+
+    grade="🥈 جيد جداً";
+    gradeColor="var(--gold-light)";
+
+  }else if(score>=60){
+
+    grade="🥉 جيد";
+    gradeColor="var(--gold)";
+
+  }else{
+
+    grade="📚 راجع تاني";
+    gradeColor="var(--danger)";
+
+  }
+
+
+  const circumference=
+    2*Math.PI*45;
+
+  const offset=
+    circumference-(score/100)*circumference;
+
+
+  const reportHTML=
+    questions.map((q,index)=>{
+
+      const isCorrect=
+        answers[index]===q.a;
+
+      const yourAnswer=
+        answers[index]>=0
+        ? escapeHTML(q.o[answers[index]])
+        : "تم التخطي";
+
+
+      return `
+
+        <div class="report-item ${isCorrect?"ok":"no"}">
+
+          <div class="ri-q">
+
+            ${isCorrect?"✅":"❌"}
+
+            ${escapeHTML(q.t)}
+
+          </div>
+
+
+          ${
+            !isCorrect
+            ? `
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-yours">
+                  إجابتك
+                </span>
+
+                <span>
+                  ${yourAnswer}
+                </span>
+
+              </div>
+
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-right">
+                  الصحيح
+                </span>
+
+                <span>
+                  ${escapeHTML(q.o[q.a])}
+                </span>
+
+              </div>
+
+            `
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("prog-bar").style.width="100%";
+
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+
+      <div style="
+        background:var(--bg2);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:20px;
+        text-align:right;
+      ">
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          اسم الطالب
+        </div>
+
+        <div style="
+          font-size:17px;
+          font-weight:900;
+          color:var(--text);
+          margin-bottom:12px;
+        ">
+          ${escapeHTML(studentName)}
+        </div>
+
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          كود الكشف
+        </div>
+
+        <div style="
+          font-size:16px;
+          font-weight:900;
+          color:var(--gold);
+        ">
+          ${escapeHTML(studentCode)}
+        </div>
+
+      </div>
+
+
+      <div class="score-ring">
+
+        <svg viewBox="0 0 110 110">
+
+          <circle
+            class="ring-bg"
+            cx="55"
+            cy="55"
+            r="45"
+          />
+
+          <circle
+            class="ring-fill"
+            cx="55"
+            cy="55"
+            r="45"
+            stroke="${gradeColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="ringFill"
+          />
+
+        </svg>
+
+
+        <div class="score-num">
+          ${score}
+        </div>
+
+        <div class="score-pct">
+          %
+        </div>
+
+      </div>
+
+
+      <div
+        class="result-grade"
+        style="color:${gradeColor}"
+      >
+        ${grade}
+      </div>
+
+
+      <div class="result-sub">
+
+        أجبت على ${answered} من ${total} سؤال
+
+      </div>
+
+
+      <div class="result-stats">
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--success)"
+          >
+            ${correct}
+          </div>
+
+          <div class="l">
+            صحيح
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--danger)"
+          >
+            ${wrong}
+          </div>
+
+          <div class="l">
+            خطأ
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--gold)"
+          >
+            ${total-answered}
+          </div>
+
+          <div class="l">
+            تخطي
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="result-actions">
+
+
+      ${
+        wrongSet.length
+        ? `
+
+          <button
+            class="btn btn-retry"
+            type="button"
+            onclick="retryWrong()"
+          >
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            إعادة الخطأ (${wrongSet.length})
+
+          </button>
+
+        `
+        :""
+      }
+
+
+      <button
+        class="btn btn-home"
+        type="button"
+        onclick="init(QUESTIONS)"
+      >
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        امتحان جديد عشوائي
+
+      </button>
+
+
+      <a
+        href="../index.html"
+        class="btn btn-home"
+        style="text-decoration:none;"
+      >
+
+        <i class="fa-solid fa-house"></i>
+
+        رجوع للمادة
+
+      </a>
+
+
+    </div>
+
+
+    <div>
+
+      <div class="report-title">
+        📋 تقرير مفصّل
+      </div>
+
+      ${reportHTML}
+
+    </div>
+
+  `;
+
+  // حفظ نسخة ثابتة من النتيجة الرسمية قبل بدء أي مراجعة
+  originalResult = {
+    questions: questions.slice(),
+    answers: answers.slice(),
+    wrongSet: wrongSet.map(q=>({...q})),
+    correct: correct,
+    wrong: wrong,
+    answered: answered,
+    score: score,
+    resultHTML: document.getElementById("app").innerHTML,
+    studentName: studentName,
+    studentCode: studentCode
+  };
+
+  setTimeout(()=>{
+
+    const ring=
+      document.getElementById("ringFill");
+
+    if(ring){
+
+      ring.style.strokeDashoffset=
+        offset;
+
+    }
+
+  },100);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* RETRY WRONG - مراجعة منفصلة */
+
+function retryWrong(){
+
+  if(!originalResult || !originalResult.wrongSet.length){
+    return;
+  }
+
+  const pool=originalResult.wrongSet.map(q=>({
+    t:q.t,
+    o:q.o,
+    a:q.a
+  }));
+
+  // بدء المراجعة دون تغيير الدرجة الأصلية
+  init(pool, true);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* REVIEW RESULT - نتيجة التدريب فقط */
+
+function showReviewResult(){
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+  const reviewCorrect=correct;
+  const reviewWrong=wrong;
+  const reviewSkipped=total-answered;
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="font-size:45px;margin-bottom:12px;">📚</div>
+
+      <div class="result-grade">انتهت مراجعة الأخطاء</div>
+
+      <div class="result-sub" style="margin-bottom:20px;">
+        دي نتيجة التدريب فقط، ودرجتك الأصلية لم تتغير.
+      </div>
+
+      <div class="result-stats">
+
+        <div class="rs">
+          <div class="n" style="color:var(--success)">${reviewCorrect}</div>
+          <div class="l">إجابة صحيحة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--danger)">${reviewWrong}</div>
+          <div class="l">إجابة خاطئة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--gold)">${reviewSkipped}</div>
+          <div class="l">لم تتم الإجابة</div>
+        </div>
+
+      </div>
+
+      <div style="
+        margin-top:22px;
+        padding:15px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:var(--bg2);
+      ">
+        <div style="color:var(--text2);font-size:13px;margin-bottom:6px;">
+          درجتك الرسمية في الامتحان الأصلي
+        </div>
+        <div style="font-size:32px;font-weight:900;color:var(--gold);">
+          ${originalResult ? originalResult.score : 0}%
+        </div>
+        <div style="color:var(--success);font-size:12px;margin-top:5px;">
+          🔒 الدرجة الأصلية ثابتة
+        </div>
+      </div>
+
+      <div class="result-actions">
+
+        <button class="btn btn-retry" type="button" onclick="showOriginalResult()">
+          <i class="fa-solid fa-arrow-right"></i>
+          العودة إلى النتيجة الأصلية
+        </button>
+
+        <button class="btn btn-home" type="button" onclick="init(QUESTIONS)">
+          <i class="fa-solid fa-shuffle"></i>
+          امتحان جديد
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("prog-bar").style.width="100%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* RESTORE ORIGINAL RESULT */
+
+function showOriginalResult(){
+
+  if(!originalResult){
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  questions=originalResult.questions.slice();
+  answers=originalResult.answers.slice();
+  wrongSet=originalResult.wrongSet.map(q=>({...q}));
+
+  correct=originalResult.correct;
+  wrong=originalResult.wrong;
+  answered=originalResult.answered;
+
+  studentName=originalResult.studentName;
+  studentCode=originalResult.studentCode;
+
+  current=Math.max(0, questions.length-1);
+  reviewMode=false;
+
+  document.getElementById("app").innerHTML=originalResult.resultHTML;
+
+  updateTop();
+  document.getElementById("prog-bar").style.width="100%";
+
+  const ring=document.getElementById("ringFill");
+
+  if(ring){
+    const circumference=2*Math.PI*45;
+    const offset=circumference-(originalResult.score/100)*circumference;
+
+    ring.style.strokeDashoffset=circumference;
+
+    setTimeout(()=>{
+      const currentRing=document.getElementById("ringFill");
+      if(currentRing){
+        currentRing.style.strokeDashoffset=offset;
+      }
+    },100);
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* THEME */
+
+const themeBtn=
+  document.getElementById("themeBtn");
+
+let theme=
+  localStorage.getItem("theme") || "dark";
+
+
+function applyTheme(value){
+
+  theme=value;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    value==="dark" ? "dark" : ""
+  );
+
+  if(themeBtn){
+
+    themeBtn.textContent=
+      value==="dark" ? "☀️" : "🌙";
+
+  }
+
+  localStorage.setItem(
+    "theme",
+    value
+  );
+
+}
+
+
+applyTheme(theme);
+
+
+if(themeBtn){
+
+  themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+      applyTheme(
+        theme==="dark"
+        ? "light"
+        : "dark"
+      );
+
+    }
+  );
+
+}
+
+
+/* START */
+
+init(QUESTIONS);
+
+</script>
+<div style="
+  max-width:650px;
+  margin:35px auto;
+  padding:0 20px;
+  text-align:center;
+  direction:rtl;
+">
+
+  <div style="
+    color:#d4af37;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+  ">
+    ✦ تواصل معنا ✦
+  </div>
+
+  <div style="
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
+
+    <a href="https://wa.me/201010306545"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 تواصل معنا على واتساب
+    </a>
+
+    <a href="https://chat.whatsapp.com/JR7eCQQn9HLGoCYUfA1NNF?mode=gi_t"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 انضم إلى جروب الواتساب
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
